@@ -181,8 +181,10 @@ public class CopyCommandExecutor : ICommandExecutor<CopyCommand>
 
         var autoAddedComponents = IdentifyAutoAddedComponents(sourceComponents, targetComponents);
 
-        if (pruneAutoAddedComponents.GetValueOrDefault(false))
-            await PruneAutoAddedComponents(autoAddedComponents);
+        if (pruneAutoAddedComponents.HasValue && !pruneAutoAddedComponents.Value)
+            return;
+
+        await PruneAutoAddedComponents(autoAddedComponents);
 
         output.WriteLine("Sanity checks after pruning...", ConsoleColor.Blue);
         var postPruningComponents = await GetSolutionsComponents(new[] { targetSolution });
