@@ -14,5 +14,9 @@ namespace Greg.Xrm.Command.Commands.Solution
         public string TargetSolution { get; set; }
         [Option("publisherPrefix", "pp", HelpText = "The prefix of the publisher used to create the solution if needed")]
         public string? PublisherPrefix { get; set; }
+        [Option("checkCopy", "cc", HelpText = "Perform a check between the source solutions and the target solution to validate the copied components")]
+        public bool? CheckCopiedComponents { get; set; }
+        [Option("pruneAutoAddedComponents", "paac", HelpText = "Prune auto added components from the target solution")]
+        public bool? PruneAutoAddedComponentFromTargetSolution { get; set; }
     }
 }
